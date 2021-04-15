@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+
+  mysql-balance-mock:
+    image: mysql:5.7
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci', '--sql_mode=']
+    volumes:
+      - ./database/init.sql:/init_balance_db.sql:ro
+      - ./database/persistence:/var/lib/mysql:rw
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+    ports:
+      - target: 3306
+        published: ${DB_PORT}
