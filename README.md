@@ -20,18 +20,19 @@
 
 После скачивания приложения через `git pull` необходимо в директории проекта выполнить следующие команды
 - `composer install` - для установления зависимостей
+- `.env.example` скопировать в `.env`
 - для тестовой среды необходимо выполнить `docker-compose up -d --build` (поднимаем базу данных `mysql`)
 - для создания таблиц нужно выполнить `php artisan migrate` и для их наполнения `php artisan db:seed --class=BalanceHistorySeeder`
 - после выполняем `php artisan serve`
 
 
-После всех этих действий на порте 8000 доступен сервис, и можно уже делать запросы к нему.
+После всех этих действий на порте 8080 доступен сервис, и можно уже делать запросы к нему.
 Примеры запросов 
 
 
 ```
 
-curl 'http://127.0.0.1:8000/api/v1/balance' --data-binary '{"jsonrpc": "2.0", "method": "balance.history", "params": {"user_id": 1, "limit": 4}, "id": 1}'
-curl 'http://127.0.0.1:8000/api/v1/balance' --data-binary '{"jsonrpc": "2.0", "method": "balance.userBalance", "params": {"user_id": 1}, "id": 2}'
+curl 'http://127.0.0.1:8080/api/v1/balance' --data-binary '{"jsonrpc": "2.0", "method": "balance.history", "params": {"user_id": 1, "limit": 4}, "id": 1}'
+curl 'http://127.0.0.1:8080/api/v1/balance' --data-binary '{"jsonrpc": "2.0", "method": "balance.userBalance", "params": {"user_id": 1}, "id": 2}'
 
 ```
